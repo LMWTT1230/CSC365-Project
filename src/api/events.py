@@ -47,7 +47,6 @@ def get_event(event_id: int):
             )
         if not json:
             raise HTTPException(status_code=404, detail="event not found.")
-
     return json
 
 
@@ -97,8 +96,6 @@ def get_fights_by_event(event_name: str):
     )
 
     with db.engine.connect() as conn:
-        result = conn.execute(fights)
-        rows = result.fetchall()
         json = []
         for row in rows:
             if not row.event_name:
